@@ -254,7 +254,7 @@ var app = (function () {
     	};
     }
 
-    // (98:6) {#if blueWon}
+    // (99:6) {#if blueWon}
     function create_if_block(ctx) {
     	let h2;
 
@@ -439,7 +439,7 @@ var app = (function () {
     	}
 
     	function updateScore(player, score) {
-    		if (redWon || blueWon) {
+    		if (noGame) {
     			return;
     		}
 
@@ -458,6 +458,7 @@ var app = (function () {
     	const minusBlue = updateScore.bind(null, "blue").bind(null, -1);
     	let blueWon;
     	let redWon;
+    	let noGame;
 
     	$$self.$$.update = () => {
     		if ($$self.$$.dirty & /*redPlayerPoints, bluePlayerPoints*/ 3) {
@@ -466,6 +467,10 @@ var app = (function () {
 
     		if ($$self.$$.dirty & /*bluePlayerPoints, redPlayerPoints*/ 3) {
     			 $$invalidate(3, redWon = bluePlayerPoints <= 0 && redPlayerPoints > 0);
+    		}
+
+    		if ($$self.$$.dirty & /*bluePlayerPoints, redPlayerPoints*/ 3) {
+    			 noGame = bluePlayerPoints == 0 && redPlayerPoints == 0;
     		}
     	};
 
