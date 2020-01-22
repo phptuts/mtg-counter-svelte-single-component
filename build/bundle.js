@@ -439,7 +439,7 @@ var app = (function () {
     	}
 
     	function updateScore(player, score) {
-    		if (noGame) {
+    		if (noGame || redWon || blueWon) {
     			return;
     		}
 
