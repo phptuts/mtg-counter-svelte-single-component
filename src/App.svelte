@@ -4,6 +4,7 @@
 
   $: blueWon = redPlayerPoints <= 0 && bluePlayerPoints > 0;
   $: redWon = bluePlayerPoints <= 0 && redPlayerPoints > 0;
+  $: noGame = bluePlayerPoints == 0 && redPlayerPoints == 0;
 
   function startGame() {
     redPlayerPoints = 20;
@@ -11,7 +12,7 @@
   }
 
   function updateScore(player, score) {
-    if (redWon || blueWon) {
+    if (noGame) {
       return;
     }
 
